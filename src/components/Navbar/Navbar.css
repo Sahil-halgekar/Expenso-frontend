@@ -1,0 +1,19 @@
+.navbar {
+  display: flex;
+  height: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0.5rem;
+}
+
+
+
+.app-logo1 {
+  font-family: 'Oleo Script Swash Caps', cursive;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 3rem;
+  justify-self: center;
+  color: #3e4685;
+}

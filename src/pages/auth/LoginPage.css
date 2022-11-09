@@ -1,0 +1,37 @@
+.login-page {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: auto 1rem;
+}
+.app-logo {
+  font-family: 'Oleo Script Swash Caps', cursive;
+  font-size: 3rem;
+  justify-self: center;
+  color: #3e4685;
+}
+.app-logo-header {
+  font-size: 3rem;
+}
+
+.login-page-header {
+  text-align: center;
+}
+.form-label-input {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0;
+}
+
+.login-btn {
+  width: 100%;
+  background-color: #f86967;
+  font-weight: bold;
+  color: white;
+  margin-top: 2rem;
+}
+
+.to-signin {
+  text-align: center;
+}

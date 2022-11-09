@@ -1,0 +1,40 @@
+.update-page{
+    height: 80vh;
+    margin-top: 4%;
+} 
+#profileImage1 {
+  margin-top: 0;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #07145e;
+  font-size: 45px;
+  color: #fff;
+  text-align: center;
+  line-height: 150px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.profileImg{
+  font-family: 'Oleo Script Swash Caps', cursive;
+  font-size: 100%;
+} 
+.update-btn {
+    width: 100%;
+    background-color: black;
+    font-weight: bold;
+    color: white;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .form-label-input {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 0;
+  }
+  
+  .update-form {
+    margin: 1rem;
+  }
+  

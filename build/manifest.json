@@ -1,0 +1,51 @@
+{
+  "name": "Expenso",
+  "short_name": "Expenso",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon",
+      "purpose": "any"
+    },
+    {
+      "src": "images/icons/Expenso-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "images/icons/Expenso-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose":"maskable"
+    },
+    {
+      "src": "images/icons/logo1024.png",
+      "type": "image/png",
+      "sizes": "1024x1024"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Home",
+      "short_name": "Home",
+      "description": "Display home page",
+      "url": "/thome",
+      "icons": [{ "src": "/images/icons/Screenshot1.png", "sizes": "540x720" }]
+    }
+  ],
+  "description": "Group expense manager",
+  "screenshots": [
+    {
+      "src": "/images/icons/Screenshot1.png",
+      "type": "image/png",
+      "sizes": "540x720"
+    }
+  ]
+}
