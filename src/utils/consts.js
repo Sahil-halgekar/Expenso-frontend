@@ -1,4 +1,4 @@
-const API_URL = "https://expenso-backend.vercel.app/" || 'http://localhost:5000/api';
+const API_URL = "https://expenso-backend-ciu668ow8-sahil-halgekar.vercel.app/" || 'http://localhost:5000/api';
 
 const CURRENCIES = [
   'AFA',
