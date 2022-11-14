@@ -17,13 +17,13 @@
     {
       "src": "images/icons/Expenso-192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose":"any"
     },
     {
       "src": "images/icons/Expenso-512.png",
       "type": "image/png",
-      "sizes": "512x512",
-      "purpose":"maskable"
+      "sizes": "512x512"
     },
     {
       "src": "images/icons/logo1024.png",
