@@ -1,6 +1,6 @@
 [{
         "relation": ["delegate_permission/common.handle_all_urls"],
-        "target" : { "namespace": "android_app", "package_name": "app.netlify.expenso_7.twa",
-                     "sha256_cert_fingerprints": ["09:1F:57:88:9A:AB:65:87:04:C7:88:51:58:AF:8B:59:C5:90:A9:01:E2:0D:6D:71:98:44:DC:73:5C:35:4C:9A"] }
+        "target" : { "namespace": "android_app", "package_name": "app.netlify.expenso_07.twa",
+                     "sha256_cert_fingerprints": ["AB:37:57:3A:4C:52:BE:B7:1A:A0:71:04:7B:6D:92:1D:09:D6:CE:0E:B4:B2:62:C6:10:73:53:46:0C:B8:A1:F8"] }
       }
 ]
