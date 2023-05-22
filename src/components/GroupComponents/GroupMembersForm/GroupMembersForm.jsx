@@ -32,8 +32,6 @@ const GroupMembersForm = ({ setPageStatus, defaultMembers }) => {
     };
     getUserData();
   }, []);
-
-  // Initialize selected friends
   useEffect(() => {
     if (friends.length) {
       const isSelected = friends.map((friend) => {
@@ -43,7 +41,6 @@ const GroupMembersForm = ({ setPageStatus, defaultMembers }) => {
         return index === -1 ? false : true;
       });
 
-      // setIsSelected(new Array(friends.length).fill(false));
       setIsSelected(isSelected);
     }
   }, [friends.length, defaultMembers, friends]);
@@ -232,7 +229,7 @@ const GroupMembersForm = ({ setPageStatus, defaultMembers }) => {
           )}
 
           <div>
-            <h4 className="friends-header">Friends on SplitEasy</h4>
+            <h4 className="friends-header">Friends on Expenso</h4>
             <form className="friends-list-form" onSubmit={handleSubmitMembers}>
               {friends &&
                 friends.map((friend, index) => (

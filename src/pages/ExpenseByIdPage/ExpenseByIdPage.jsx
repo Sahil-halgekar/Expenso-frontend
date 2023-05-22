@@ -4,7 +4,6 @@ import { getExpenseById } from '../../api/expenses';
 import ExpenseHeader from '../../components/ExpenseComponents/ExpenseHeader/ExpenseHeader';
 import ExpenseSharesList from '../../components/ExpenseComponents/ExpenseSharesList/ExpenseSharesList';
 import ExpenseForm from '../../components/ExpenseComponents/ExpenseForm/ExpenseForm';
-import ExpenseComments from './../../components/ExpenseComponents/ExpenseComments/ExpenseComments';
 
 const ExpenseByIdPage = () => {
   const { groupId, expenseId } = useParams();
@@ -50,11 +49,6 @@ const ExpenseByIdPage = () => {
               <ExpenseSharesList
                 shares={expense?.shares}
                 currency={expense?.group.currency}
-              />
-              <ExpenseComments
-                groupId={groupId}
-                expenseId={expenseId}
-                setErrorMessage={setErrorMessage}
               />
             </>
           )}
