@@ -35,26 +35,11 @@ const SharesInputs = ({ members, expense_amount, setShares, currency }) => {
     }
   }, [members, expense_amount, amountsByMember, setShares]);
 
-  const handleSplitMethodChange = (e) => {
-    e.preventDefault();
-    switch (e.target.textContent) {
-      case 'Equally':
-        setSplitMethod('equally');
-        break;
-      case 'Manually':
-        setSplitMethod('manually');
-        break;
-      default:
-        setSplitMethod('equally');
-        break;
-    }
-  };
 
   return (
     <div className="shares-inputs">
       <div className="full-width" id="split-options">
         <button
-          onClick={handleSplitMethodChange}
           className={`btn split-btn ${
             splitMethod === 'equally' ? 'btn-selected' : ''
           }`}
@@ -62,15 +47,7 @@ const SharesInputs = ({ members, expense_amount, setShares, currency }) => {
         >
           Equally
         </button>
-        <button
-          onClick={handleSplitMethodChange}
-          className={`btn split-btn ${
-            splitMethod === 'manually' ? 'btn-selected' : ''
-          }`}
-          type="button"
-        >
-          Manually
-        </button>
+        
       </div>
 
       {members.map((member, index) => (

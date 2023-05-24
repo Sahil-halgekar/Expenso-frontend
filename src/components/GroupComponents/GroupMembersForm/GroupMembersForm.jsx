@@ -2,15 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { updateGroup } from '../../../api/groups';
 import { getUserInfo } from '../../../api/userInfo';
+import { getGroupById } from '../../../api/groups';
 import toast, { Toaster } from 'react-hot-toast';
 import './GroupMembersForm.css';
 import { capitalizeFirstLetter } from '../../../utils/capitalizeFirstLetter';
 
 const GroupMembersForm = ({ setPageStatus, defaultMembers }) => {
   const [userInfo, setUserInfo] = useState(undefined);
-  const [friends, setFriends] = useState([]);
-  const [isSelected, setIsSelected] = useState([]);
-  const [selectedFriends, setSelectedFriends] = useState([]);
   const [members, setMembers] = useState([]);
   const [addNewContact, setAddNewContact] = useState(false);
 
@@ -20,53 +18,24 @@ const GroupMembersForm = ({ setPageStatus, defaultMembers }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-
-  // Get user info
   useEffect(() => {
     const getUserData = async () => {
       const userInfo = await getUserInfo();
+      const groupInfo=await getGroupById(groupId);
       if (userInfo) {
         setUserInfo(userInfo);
-        setFriends(userInfo?.friends);
+        setMembers(groupInfo.group.members)
       }
     };
     getUserData();
   }, []);
-  useEffect(() => {
-    if (friends.length) {
-      const isSelected = friends.map((friend) => {
-        const index = defaultMembers.findIndex(
-          (member) => member.email === friend.email
-        );
-        return index === -1 ? false : true;
-      });
-
-      setIsSelected(isSelected);
-    }
-  }, [friends.length, defaultMembers, friends]);
 
   useEffect(() => {
-    const selectedFriends = [];
-    for (let [index, selectedMember] of isSelected.entries()) {
-      if (selectedMember) {
-        selectedFriends.push(friends[index]);
-      }
-    }
-    setSelectedFriends(selectedFriends);
-  }, [isSelected, friends]);
-
-  useEffect(() => {
-    const members = [...selectedFriends, ...addedMembers];
+    const members = [...addedMembers];
     setMembers(members);
-  }, [selectedFriends, addedMembers]);
+  }, [addedMembers]);
 
-  const handleIsSelected = (index, e) => {
-    setIsSelected((prev) => {
-      const tmp = [...prev];
-      tmp[index] = !isSelected[index];
-      return tmp;
-    });
-  };
+ 
 
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
@@ -85,7 +54,7 @@ const GroupMembersForm = ({ setPageStatus, defaultMembers }) => {
     });
 
     if (isPresent.length === 0) {
-      setAddedMembers((prev) => {
+      setMembers((prev) => {
         return [
           ...prev,
           {
@@ -102,28 +71,6 @@ const GroupMembersForm = ({ setPageStatus, defaultMembers }) => {
     setLastName('');
     setAddNewContact(false);
   };
-
-  const handleDeleteMember = (email, e) => {
-    e.preventDefault();
-
-    const index = friends.findIndex((member) => {
-      return member.email === email;
-    });
-
-    if (index === -1) {
-      setAddedMembers((prev) => {
-        const tmp = [...prev];
-        return tmp.filter((member) => member.email !== email);
-      });
-    } else {
-      setIsSelected((prev) => {
-        const tmp = [...prev];
-        tmp[index] = false;
-        return tmp;
-      });
-    }
-  };
-
   const handleCancelBtn = () => {
     if (defaultMembers.length === 1) {
       setPageStatus('expenses');
@@ -134,7 +81,7 @@ const GroupMembersForm = ({ setPageStatus, defaultMembers }) => {
 
   const handleSubmitMembers = async (e) => {
     e.preventDefault();
-    const { success, errorMessage } = await updateGroup(groupId, {
+    const {success,errorMessage}=await updateGroup(groupId, {
       members: members,
     });
 
@@ -172,16 +119,7 @@ const GroupMembersForm = ({ setPageStatus, defaultMembers }) => {
                     <div>
                       <span>{member.firstName.slice(0, 1)}</span>{' '}
                       <span>{member.lastName.slice(0, 1)}</span>{' '}
-                      <button
-                        onClick={(e) => handleDeleteMember(member.email, e)}
-                        className="icon-btn delete-member-btn"
-                        type="button"
-                      >
-                        <span className="fa fa-stack fa-1x">
-                          <i className="fa fa-solid fa-circle fa-stack-2x"></i>
-                          <i className="fa fa-solid fa-xmark fa-stack-1x fa-inverse"></i>
-                        </span>
-                      </button>
+
                     </div>
                   </div>
                   <span>{member.firstName}</span>
@@ -227,27 +165,9 @@ const GroupMembersForm = ({ setPageStatus, defaultMembers }) => {
               </form>
             </div>
           )}
-
-          <div>
-            <h4 className="friends-header">Friends on Expenso</h4>
-            <form className="friends-list-form" onSubmit={handleSubmitMembers}>
-              {friends &&
-                friends.map((friend, index) => (
-                  <div className="friends-item" key={friend._id}>
-                    <p>{friend.firstName}</p>
-                    <input
-                      type={'checkbox'}
-                      checked={isSelected[index] || false}
-                      onChange={(e) => handleIsSelected(index, e)}
-                      className="checkbox-round"
-                    />
-                  </div>
-                ))}
-              <button className="btn save-btn" type="submit">
+          <button className="btn save-btn" type="submit" onClick={handleSubmitMembers}>
                 Save
               </button>
-            </form>
-          </div>
         </>
       )}
       <Toaster position="top-center" reverseOrder={false} />
